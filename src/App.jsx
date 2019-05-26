@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Provider } from "react-redux"
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 
@@ -38,7 +38,7 @@ class App extends Component {
 
     return (
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
           <div className={classes.root}>
             <CssBaseline />
             <MenuBar onDrawerToggle={this.handleDrawerToggle} />
@@ -49,10 +49,11 @@ class App extends Component {
                 {routes.map((prop, key) => {
                   return (<Route path={prop.path} component={prop.component} key={key} />);
                 })}
+                <Redirect from="/" to="/lines-discovery" />
               </Switch>
             </main>
           </div>
-        </BrowserRouter>
+        </HashRouter>
       </Provider>
     );
   }

@@ -76,6 +76,7 @@ class Menu extends Component {
   };
 
   handleChange = route => (event, expanded) => {
+    console.log("ENV %o", process.env);
     const { history } = this.props;
     history.push(route.path);
     this.setState({
