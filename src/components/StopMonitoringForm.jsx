@@ -42,9 +42,9 @@ function View(props) {
         setFieldTouched(e.target.name, true, false);
     };
 
-    const STOP_VISIT_TYPES = [{ value: 'all', label: 'all', }, 
-        { value: 'arrivals', label: 'arrivals', }, 
-        { value: 'departures', label: 'departures', },];
+    const STOP_VISIT_TYPES = [{ value: 'all', label: 'all', },
+    { value: 'arrivals', label: 'arrivals', },
+    { value: 'departures', label: 'departures', },];
 
     return (
         <Form >
@@ -74,9 +74,9 @@ function View(props) {
                         error={Boolean(errors.stopVisitTypes)} helperText={errors.stopVisitTypes}
                         value={stopVisitTypes} onChange={handleChange}>
                         {STOP_VISIT_TYPES.map(option => (
-                             <MenuItem key={option.value} value={option.value}>
-                             {option.label}
-                           </MenuItem>                     
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
                         ))}
                     </TextField>
                 </Grid>
@@ -112,14 +112,14 @@ function View(props) {
                     <Slider className={classes.textField} id="maximumNumberOfCallsPrevious" name="maximumNumberOfCallsPrevious" label={"Maximum Number Of Calls Previous " + maximumNumberOfCallsPrevious}
                         error={Boolean(errors.maximumNumberOfCallsPrevious)} helperText={errors.maximumNumberOfCallsPrevious}
                         value={maximumNumberOfCallsPrevious} onChange={handleOnChange}
-                        InputProps={{ step: 1 }}
+                        InputProps={{ step: 1, min: -1 }}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <Slider className={classes.textField} id="maximumNumberOfCallsOnwards" name="maximumNumberOfCallsOnwards" label={"Maximum Number Of Calls Onwards " + maximumNumberOfCallsOnwards}
                         error={Boolean(errors.maximumNumberOfCallsOnwards)} helperText={errors.maximumNumberOfCallsOnwards}
                         value={maximumNumberOfCallsOnwards} onChange={handleOnChange}
-                        InputProps={{ step: 1 }}
+                        InputProps={{ step: 1, min: -1 }}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -196,8 +196,8 @@ class StopMonitoringForm extends Component {
         (maximumStopVisits > 0) && search.set("MaximumStopVisits", maximumStopVisits);
         (minimumStopVisitsPerLine > 0) && search.set("MinimumStopVisitsPerLine", minimumStopVisitsPerLine);
         (minimumStopVisitsPerLineVia > 0) && search.set("MinimumStopVisitsPerLineVia", minimumStopVisitsPerLineVia);
-        (maximumNumberOfCallsPrevious > 0) && search.set("MaximumNumberOfCallsPrevious", maximumNumberOfCallsPrevious);
-        (maximumNumberOfCallsOnwards > 0) && search.set("MaximumNumberOfCallsOnwards", maximumNumberOfCallsOnwards);
+        (maximumNumberOfCallsPrevious >= 0) && search.set("MaximumNumberOfCallsPrevious", maximumNumberOfCallsPrevious);
+        (maximumNumberOfCallsOnwards >= 0) && search.set("MaximumNumberOfCallsOnwards", maximumNumberOfCallsOnwards);
         return search.toString();
     }
 
