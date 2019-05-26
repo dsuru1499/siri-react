@@ -112,35 +112,38 @@ function Collapsible(props) {
     const { collapsed, expanded } = props;
     const [opened, open] = useState(false);
 
-    const handleOnClick = (e) => {
+    const handleClick = (e) => {
         e.stopPropagation();
         e.preventDefault();
         open(!opened);
     }
 
     return (
-        <div className="collapsible" id={" collapsible-" + counter++} onClick={handleOnClick} >
-            {!opened ? <Line><ExpandButton />{collapsed}</Line> : <Line ><CollapseButton />{expanded}</Line>}
+        <div className="collapsible" id={" collapsible-" + counter++}  >
+            {!opened ? <Line><ExpandButton onClick={handleClick} />{collapsed}</Line>
+                : <Line ><CollapseButton onClick={handleClick} />{expanded}</Line>}
         </div >
     );
 }
 
 function CollapseButton(props) {
+    const { onClick } = props;
     const handleOnMouseDown = (e) => {
         e.stopPropagation();
         e.preventDefault();
     }
 
-    return (<span className="button collapse-button" onMouseDown={handleOnMouseDown} />);
+    return (<span className="button collapse-button" onMouseDown={handleOnMouseDown} onClick={onClick} />);
 }
 
 function ExpandButton(props) {
+    const { onClick } = props;
     const handleOnMouseDown = (e) => {
         e.stopPropagation();
         e.preventDefault();
     }
 
-    return (<span className="button expand-button" onMouseDown={handleOnMouseDown} />);
+    return (<span className="button expand-button" onMouseDown={handleOnMouseDown} onClick={onClick} />);
 }
 
 function Comment(props) {
