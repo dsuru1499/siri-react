@@ -7,6 +7,8 @@ import { createSelector } from 'reselect';
 import actions, { loadLinesDiscovery } from "../actions";
 import * as T from "../types";
 import XmlView from "./XmlView";
+import { getParams } from "../utils"
+
 
 class LineDiscovery extends Component {
 
@@ -17,11 +19,13 @@ class LineDiscovery extends Component {
     };
 
     componentDidMount() {
-        let options = {
-            [T.VERSION]: T.DEFAULT_VERSION,
-            [T.REQUESTOR_REF]: T.DEFAULT_REQUESTOR_REF,
-        };
-        this.props.onChange(options);
+        this.props.onChange(getParams(this.props.location));
+    }
+
+    componentWillReceiveProps(props) {
+        if (props.location !== this.props.location) {
+            this.props.onChange(getParams(props.location));
+        }
     }
 
     componentWillUnmount() {

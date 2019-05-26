@@ -159,7 +159,7 @@ class StopMonitoringForm extends Component {
     handleSubmit = (values, actions) => {
         const { history } = this.props;
         const url = "/stop-monitoring?" + this.setParams(values);
-        history.push(url);
+        history.replace(url);
     }
 
     getParams() {

@@ -7,6 +7,7 @@ import { createSelector } from 'reselect';
 import actions, { loadStopPointsDiscovery } from "../actions";
 import * as T from "../types";
 import XmlView from "./XmlView";
+import { getParams } from "../utils"
 
 class StopPointsDiscovery extends Component {
 
@@ -21,11 +22,13 @@ class StopPointsDiscovery extends Component {
     };
 
     componentDidMount() {
-        let options = {
-            [T.VERSION]: T.DEFAULT_VERSION,
-            [T.REQUESTOR_REF]: T.DEFAULT_REQUESTOR_REF,
-        };
-        this.props.onChange(options);
+        this.props.onChange(getParams(this.props.location));
+    }
+
+    componentWillReceiveProps(props) {
+        if (props.location !== this.props.location) {
+            this.props.onChange(getParams(props.location));
+        }
     }
 
     componentWillUnmount() {
@@ -34,7 +37,6 @@ class StopPointsDiscovery extends Component {
 
     render() {
         const { value } = this.props;
-        console.log("render %o", value);
         return (
             <Fragment>
                 <XmlView document={value.request} />

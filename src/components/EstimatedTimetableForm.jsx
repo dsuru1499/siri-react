@@ -89,7 +89,7 @@ class EstimatedTimetableForm extends Component {
   handleSubmit = (values, actions) => {
     const { history } = this.props;
     const url = "/estimated-timetable?" + this.setParams(values);
-    history.push(url);
+    history.replace(url);
   }
 
   getParams() {
