@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { createSelector } from 'reselect';
 
 import actions, { loadLinesDiscovery } from "../actions";
-import * as T from "../types";
 import XmlView from "./XmlView";
 import { getParams } from "../utils"
 
