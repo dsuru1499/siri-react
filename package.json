@@ -10,7 +10,7 @@
     "clsx": "^1.0.4",
     "downshift": "^3.2.10",
     "formik": "^1.5.7",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.6",
     "react-action": "^1.1.0",
     "react-dom": "^16.8.6",
